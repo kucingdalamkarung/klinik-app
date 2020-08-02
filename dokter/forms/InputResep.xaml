@@ -1,0 +1,319 @@
+﻿<Window x:Class="dokter.forms.InputResep"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:dokter.forms"
+        mc:Ignorable="d"
+        Title="Input Resep" Height="688.204" Width="1152.5" Icon="/dokter;component/images/BMicon.ico"
+        WindowStartupLocation="CenterScreen">
+    <Grid Style="{StaticResource OpenSans}" Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+
+        <Grid Grid.Row="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Buat Resep" FontSize="16" FontWeight="Black" Foreground="#555555" />
+                </StackPanel>
+
+                <StackPanel Grid.Column="1">
+                    <Label x:Name="lbNamaDokter" Content="Dokter pemeriksa:" Margin="20,0,0,0" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+        <!-- Grid 1 -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                    <Label Content="No. Resep" VerticalAlignment="Center" />
+                </StackPanel>
+
+                <StackPanel Grid.Column="1">
+                    <TextBox Name="txtKodeResep" />
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MinWidth="100" Width="150" />
+                    <ColumnDefinition Width="128*" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Margin="20,8,1,8" VerticalAlignment="Center">
+                    <Label Content="No. Rekam Medis" VerticalAlignment="Center" />
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Grid.Row="0" VerticalAlignment="Center">
+                    <TextBlock Name="lbNoRM" VerticalAlignment="Center" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <!-- End Grid 1 -->
+
+        <!--Grid 2-->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Column="0" Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MinWidth="120" Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Grid.Row="0">
+                    <StackPanel>
+                        <Label Content="Obat:" VerticalAlignment="Center" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal"
+                            Background="{Binding ElementName=txtObat, Path=Background}" Margin="1,8,80,8">
+                    <TextBox x:Name="txtObat" VerticalAlignment="Center" Width="282" Margin="0,3"
+                             Validation.Error="Validation_Error"
+                             Text="{Binding UpdateSourceTrigger=LostFocus,
+                        Path=nama_obat, NotifyOnSourceUpdated=True,
+                        ValidatesOnDataErrors=True}"
+                             GotKeyboardFocus="TextBoxFocus" />
+                    <Button x:Name="btnBrowse" VerticalAlignment="Center" Margin="0" Width="70"
+                            HorizontalAlignment="Right" Content="Cari" Padding="10,10,10,9.7" Height="42"
+                            Click="btnBrowse_Click" />
+                </StackPanel>
+
+                <StackPanel Grid.Column="0" Grid.Row="1" VerticalAlignment="Center">
+                    <StackPanel>
+                        <Label Content="Jumlah:" VerticalAlignment="Center" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
+                    <TextBox x:Name="txtJumlah" Width="126" Validation.Error="Validation_Error"
+                             VerticalAlignment="Center"
+                             Text="{Binding UpdateSourceTrigger=LostFocus,
+                        Path=jumlah, NotifyOnSourceUpdated=True,
+                        ValidatesOnDataErrors=True}"
+                             GotKeyboardFocus="TextBoxFocus" />
+
+                    <DockPanel Margin="10 0">
+                        <Label Content="Dosis" Margin="5" VerticalAlignment="Center" />
+                        <TextBox Width="70" Name="txtDosis" Margin="5" />
+                        <ComboBox Margin="5" Width="90" Name="cbSatuanDosis" SelectedIndex="0">
+                            <ComboBoxItem Content="Pilih" />
+                            <ComboBoxItem Content="mg" />
+                            <ComboBoxItem Content="mg/1cc" />
+                            <ComboBoxItem Content="mg/2cc" />
+                            <ComboBoxItem Content="mg/3cc" />
+                            <ComboBoxItem Content="mg/4cc" />
+                            <ComboBoxItem Content="mg/5cc" />
+                            <ComboBoxItem Content="mcg" />
+                            <ComboBoxItem Content="gram" />
+                            <ComboBoxItem Content="mL" />
+                        </ComboBox>
+                    </DockPanel>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Column="1" Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MinWidth="100" Width="150" />
+                    <ColumnDefinition Width="128*" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Grid.Row="0">
+                    <StackPanel Margin="20,8,1,8">
+                        <Label Content="Pemakaian:" VerticalAlignment="Center" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
+                    <!--<TextBox x:Name="txtPemakaian" Validation.Error="Validation_Error"
+                             Text="{Binding UpdateSourceTrigger=LostFocus,
+                        Path=dosis, NotifyOnSourceUpdated=True,
+                        ValidatesOnDataErrors=True}"
+                             GotKeyboardFocus="TextBoxFocus" Width="50" />-->
+                    <ComboBox Margin="5" SelectedIndex="0" Name="cbAturanPakai">
+                        <ComboBoxItem Content="Pilih" />
+                        <ComboBoxItem Content="s.d.d" />
+                        <ComboBoxItem Content="b.d.d" />
+                        <ComboBoxItem Content="t.d.d" />
+                        <ComboBoxItem Content="q.d.d" />
+                        <ComboBoxItem Content="5.d.d" />
+                        <ComboBoxItem Content="6.d.d" />
+                        <ComboBoxItem Content="o.alt. h" />
+                    </ComboBox>
+                    <ComboBox Margin="5" SelectedIndex="0" Name="cbSediaanObat">
+                        <ComboBoxItem Content="Pilih" />
+                        <ComboBoxItem Content="ampl." />
+                        <ComboBoxItem Content="aurist." />
+                        <ComboBoxItem Content="bol." />
+                        <ComboBoxItem Content="caps." />
+                        <ComboBoxItem Content="collut." />
+                        <ComboBoxItem Content="garg." />
+                        <ComboBoxItem Content="crem." />
+                        <ComboBoxItem Content="emuls." />
+                        <ComboBoxItem Content="pulv." />
+                        <ComboBoxItem Content="narist." />
+                        <ComboBoxItem Content="oculent." />
+                        <ComboBoxItem Content="past.dentifr." />
+                        <ComboBoxItem Content="pil." />
+                        <ComboBoxItem Content="pot." />
+                        <ComboBoxItem Content="pulv." />
+                        <ComboBoxItem Content="pulv.adsp." />
+                        <ComboBoxItem Content="sol." />
+                        <ComboBoxItem Content="tab." />
+                        <ComboBoxItem Content="puff." />
+                        <ComboBoxItem Content="tinc." />
+                    </ComboBox>
+
+                    <TextBox Width="50" Name="txtJumPemakaian" />
+                    <ComboBox SelectedIndex="0" Margin="5" Name="cbWaktuPemakaian">
+                        <ComboBoxItem Content="Pilih" />
+                        <ComboBoxItem Content="a merid" />
+                        <ComboBoxItem Content="an" />
+                        <ComboBoxItem Content="a.c" />
+                        <ComboBoxItem Content="d.c" />
+                        <ComboBoxItem Content="p.c" />
+                        <ComboBoxItem Content="i.s." />
+                        <ComboBoxItem Content="p.r.n" />
+                        <ComboBoxItem Content="hd" />
+                        <ComboBoxItem Content="h xa mat" />
+                        <ComboBoxItem Content="h.m." />
+                        <ComboBoxItem Content="h.s." />
+                        <ComboBoxItem Content="h.v." />
+                        <ComboBoxItem Content="m et v" />
+                        <ComboBoxItem Content="om" />
+                        <ComboBoxItem Content="on" />
+                        <ComboBoxItem Content="qh" />
+                        <ComboBoxItem Content="dc" />
+                        <ComboBoxItem Content="feb dur" />
+                    </ComboBox>
+                </StackPanel>
+
+                <StackPanel Grid.Column="0" Grid.Row="1">
+                    <StackPanel Margin="20,8,1,8">
+                        <Label Content="Tempat Pemakaian:" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Grid.Row="1">
+                    <!--<TextBox x:Name="txtKeterangan" Validation.Error="Validation_Error"
+                             Text="{Binding UpdateSourceTrigger=LostFocus,
+                        Path=ket, NotifyOnSourceUpdated=True,
+                        ValidatesOnDataErrors=True}"
+                             GotKeyboardFocus="TextBoxFocus" Width="246" />-->
+                    <ComboBox SelectedIndex="0" Name="cbTempatPemakaian" Margin="5">
+                        <ComboBoxItem Content="Pilih" />
+                        <ComboBoxItem Content="Ad.aur" />
+                        <ComboBoxItem Content="Abdom" />
+                        <ComboBoxItem Content="Oc" />
+                        <ComboBoxItem Content="o.D" />
+                        <ComboBoxItem Content="o.S" />
+                        <ComboBoxItem Content="Part.dol" />
+                        <ComboBoxItem Content="u.E" />
+                        <ComboBoxItem Content="u.P" />
+                        <ComboBoxItem Content="u.V" />
+                    </ComboBox>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Column="1" Grid.Row="1">
+                <Grid.CommandBindings>
+                    <CommandBinding Command="New" CanExecute="AddDetailResep_CanExecute"
+                                    Executed="AddDetailResep_Executed" />
+                </Grid.CommandBindings>
+                <StackPanel>
+                    <Button x:Name="btnAddToList" Content="Tambah Obat" HorizontalAlignment="Right" Command="New" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <!--End Grid 2-->
+
+        <!--Grid 3-->
+        <Grid Grid.Row="3">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Label Content="Daftar Obat" FontSize="14" FontWeight="Bold" />
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <DataGrid Height="200" VerticalScrollBarVisibility="Visible" CanUserAddRows="False" x:Name="dgListObat"
+                          AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn
+                            Binding="{Binding kode_obat, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Header="Kode Obat" Width="160" />
+                        <DataGridTextColumn
+                            Binding="{Binding nama_obat, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Header="Obat" Width="150" />
+                        <DataGridTextColumn
+                            Binding="{Binding jumlah, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Header="Jumlah" Width="150" />
+                        <DataGridTextColumn
+                            Binding="{Binding dosis, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Header="Dosis" Width="150" />
+                        <DataGridTextColumn
+                            Binding="{Binding pemakaian, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Header="Aturan Pakai" Width="150" />
+                        <DataGridTextColumn
+                            Binding="{Binding ket, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Header="Tempat Pemakaian" Width="150" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button x:Name="btnSaveRecive" Content="Simpan Resep" Click="btnSaveRecive_Click" />
+                    <Button x:Name="btnCancel" Content="Batal" Click="btnCancel_Click" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <!--End Grid 3-->
+    </Grid>
+</Window>
